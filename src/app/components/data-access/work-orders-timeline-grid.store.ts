@@ -29,12 +29,11 @@ export const WorkOrdersTimelineGridStore = signalStore(
       pipe(
         tap(() => patchState(store, setIsLoading(true))),
         switchMap(() => {
-          patchState(store, setProp('currentString', 'Hello World'));
+          patchState(store, setProp('currentString', 'Test'));
           return of(null);
         }),
       ),
     );
-
     return { loadCurrentString };
   }),
   withHooks({
