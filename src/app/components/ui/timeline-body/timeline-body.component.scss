@@ -4,7 +4,22 @@
   border: 1px solid rgba(230, 235, 240, 1);
   overflow-x: auto;
   position: relative;
-  margin-left: 101px;
-  margin-right: 101px;
+  margin-left: 24px;
+  margin-right: 24px;
   min-height: calc(100vh - 180px);
+}
+
+@media (min-width: 1440px) {
+  .timeline-container {
+    margin-left: 101px;
+    margin-right: 101px;
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline-container {
+    margin-left: 8px;
+    margin-right: 8px;
+    min-height: calc(100vh - 150px);
+  }
 }
