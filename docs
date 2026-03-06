@@ -1,0 +1,21 @@
+# Work Order Timeline - AI Prompts & Decisions
+
+## Trade-offs
+
+- Used native `<select>` instead of ng-select due to Angular 19 compatibility
+- Used `box-shadow: inset` instead of `border-left` for current period indicator to avoid border overlap issues
+
+## @upgrade Tags
+
+- On click Work Centers, filter work order bars
+- For smaller projects add search bar in header so user can search work center, work order name and work order status
+- Replace hardcoded WORK_ORDERS with API integration and use rxMethod to call backend services
+- Add virtual scrolling for large work center lists
+- Add drag-and-drop to resize/move work order bars
+- User defined export to Excel: if workload grows, add work orders export based on user request such as by day, week, month or year. User can select which format they want in Excel.
+
+## AI Prompts Used
+
+- Sketch-to-CSS conversion for timeline grid
+- Timeline bar positioning with day/week/month snapping
+- Create/Edit panel with overlap validation

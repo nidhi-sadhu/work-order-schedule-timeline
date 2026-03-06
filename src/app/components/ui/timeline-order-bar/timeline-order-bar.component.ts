@@ -57,6 +57,27 @@ export class TimelineOrderBarComponent {
     return this.workOrder().data.status;
   });
 
+  readonly tooltipText = computed((): string => {
+    const wo = this.workOrder();
+    const startDate: string = new Date(wo.data.startDate).toLocaleDateString(
+      'en-US',
+      {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      },
+    );
+    const endDate: string = new Date(wo.data.endDate).toLocaleDateString(
+      'en-US',
+      {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      },
+    );
+    return `${wo.data.name}\nWork Center: ${this.workCenterName()}\nStatus: ${this.statusLabel()}\n${startDate} — ${endDate}`;
+  });
+
   toggleMenu(event: MouseEvent): void {
     event.stopPropagation();
     this.showMenu = !this.showMenu;

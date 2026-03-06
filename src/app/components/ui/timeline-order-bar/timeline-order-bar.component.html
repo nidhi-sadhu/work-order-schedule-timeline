@@ -5,11 +5,7 @@
   (mouseenter)="hovered = true"
   (mouseleave)="hovered = false; showMenu = false"
 >
-  <div
-    class="order-bar"
-    [class]="statusClass()"
-    [title]="workOrder().data.name + ' — ' + workCenterName()"
-  >
+  <div class="order-bar" [class]="statusClass()" [title]="tooltipText()">
     <span class="order-name" [title]="workCenterName()">{{
       workCenterName()
     }}</span>
