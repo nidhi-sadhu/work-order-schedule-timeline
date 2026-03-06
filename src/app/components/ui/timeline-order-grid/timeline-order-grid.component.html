@@ -1,1 +1,53 @@
-<app-timeline-order-bar />
+<div class="timeline-scroll" #timelineScroll>
+  <div class="timeline-inner">
+    <div class="timeline-header">
+      @for (header of timeLineHeaders(); track header; let i = $index) {
+        <div class="header-cell" [class.current-period]="i === currentIndex()">
+          {{ header }}
+        </div>
+      }
+    </div>
+    <div class="timeline-badge-row">
+      @for (header of timeLineHeaders(); track header; let i = $index) {
+        <div class="badge-cell">
+          @if (i === currentIndex()) {
+            <span class="current-badge">{{
+              workOrdersTimelineGridFacade.currentView()
+            }}</span>
+          }
+        </div>
+      }
+    </div>
+    <div class="timeline-body">
+      @for (wc of workCenters(); track wc.docId) {
+        <div class="timeline-row">
+          @for (header of timeLineHeaders(); track header; let i = $index) {
+            <div
+              class="timeline-cell"
+              [class.current-period]="i === currentIndex()"
+              (click)="onCellClick(wc.docId, i)"
+            ></div>
+          }
+          @for (
+            bar of getOrdersForWorkCenter(wc.docId);
+            track bar.workOrder.docId
+          ) {
+            <app-timeline-order-bar
+              [workOrder]="bar.workOrder"
+              [leftPx]="bar.leftPx"
+              [widthPx]="bar.widthPx"
+            />
+          }
+        </div>
+      }
+      <div class="timeline-empty">
+        @for (header of timeLineHeaders(); track header; let i = $index) {
+          <div
+            class="timeline-empty-cell"
+            [class.current-period]="i === currentIndex()"
+          ></div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,7 @@
-<p>timeline-workcenter works!</p>
+<div class="work-center-column">
+  <div class="work-center-header">Work Center</div>
+  <div class="work-center-badge-spacer"></div>
+  @for (wc of workCenters; track wc.docId) {
+    <div class="work-center-row">{{ wc.data.name }}</div>
+  }
+</div>

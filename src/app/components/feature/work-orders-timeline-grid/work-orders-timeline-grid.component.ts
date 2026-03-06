@@ -18,9 +18,7 @@ import { WorkOrdersTimelineGridFacade } from '../../data-access/work-orders-time
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WorkOrdersTimelineGridComponent {
-  workOrdersTimelineGridFacade = inject(WorkOrdersTimelineGridFacade);
-
-  constructor() {
-    console.log(this.workOrdersTimelineGridFacade.currentString());
-  }
+  workOrdersTimelineGridFacade: WorkOrdersTimelineGridFacade = inject(
+    WorkOrdersTimelineGridFacade,
+  );
 }
