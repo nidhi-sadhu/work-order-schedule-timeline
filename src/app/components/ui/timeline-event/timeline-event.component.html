@@ -1,0 +1,90 @@
+@if (facade.panelOpen()) {
+  <div class="panel-backdrop" (click)="onBackdropClick()"></div>
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-title">
+        <h2>Work Order Details</h2>
+        <p>Specify the dates, name and status for this order</p>
+      </div>
+      <div class="panel-actions">
+        <button class="btn-cancel" (click)="onCancel()">Cancel</button>
+        <button
+          class="btn-submit"
+          (click)="onSubmit()"
+          [disabled]="form.invalid"
+        >
+          {{ facade.panelMode() === "edit" ? "Save" : "Create" }}
+        </button>
+      </div>
+    </div>
+    <div class="panel-body" [formGroup]="form">
+      @if (overlapError) {
+        <div class="error-msg">
+          This work order overlaps with an existing order on the same work
+          center.
+        </div>
+      }
+      @if (form.errors?.["dateRange"] && form.touched) {
+        <div class="error-msg">End date must be after start date.</div>
+      }
+      <div class="form-group">
+        <label>Work Order Name</label>
+        <input type="text" formControlName="name" placeholder="Acme Inc." />
+        @if (
+          form.get("name")?.touched && form.get("name")?.errors?.["required"]
+        ) {
+          <span class="field-error">Work order name is required</span>
+        }
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <div class="status-select-wrapper">
+          <select
+            formControlName="status"
+            class="status-select"
+            [class]="form.get('status')?.value"
+          >
+            @for (opt of statusOptions; track opt.value) {
+              <option [value]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>End date</label>
+        <input type="date" formControlName="endDate" />
+        @if (
+          form.get("endDate")?.touched &&
+          form.get("endDate")?.errors?.["required"]
+        ) {
+          <span class="field-error">End date is required</span>
+        }
+      </div>
+      <div class="form-group">
+        <label>Start date</label>
+        <input type="date" formControlName="startDate" />
+        @if (
+          form.get("startDate")?.touched &&
+          form.get("startDate")?.errors?.["required"]
+        ) {
+          <span class="field-error">Start date is required</span>
+        }
+      </div>
+      <div class="form-group">
+        <label>Work Center</label>
+        <select formControlName="workCenterId">
+          <option value="" disabled>Select work center</option>
+          @for (wc of workCenterOptions(); track wc.value) {
+            <option [value]="wc.value">{{ wc.label }}</option>
+          }
+        </select>
+        @if (
+          form.get("workCenterId")?.touched &&
+          form.get("workCenterId")?.errors?.["required"]
+        ) {
+          <span class="field-error">Work center is required</span>
+        }
+      </div>
+    </div>
+  </div>
+}

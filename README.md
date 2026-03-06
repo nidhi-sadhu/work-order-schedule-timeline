@@ -1,59 +1,36 @@
-# WorkOrderScheduleTimeline
+# Work Order Schedule Timeline
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
+Timeline view for scheduling and managing work orders across work centers. Built with Angular 19.
 
-## Development server
-
-To start a local development server, run:
+## Setup
 
 ```bash
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open `http://localhost:4200`
 
-## Code scaffolding
+Requires Node 22.x or 23.x
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Overview
 
-```bash
-ng generate component component-name
-```
+Displays work orders on a horizontal timeline grid. Users can switch between day, week and month views. Work orders are shown as colored bars based on their status. Clicking on the grid opens a panel to create new orders, and existing orders can be edited or deleted via a context menu.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Libraries
 
-```bash
-ng generate --help
-```
+- **@ngrx/signals** — State management using signal store
+- **@angular/forms** — Reactive forms for the create/edit panel
+- **rxjs** — Reactive data flow
+- **bootstrap** — Base styling
 
-## Building
+## Structure
 
-To build the project run:
+- `components/data-access/` — Store and facade
+- `components/feature/` — Main page component
+- `components/ui/` — Timeline grid, bars, filters, event panel
+- `shared/store-features/` — Reusable store utilities
 
-```bash
-ng build
-```
+## Notes
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+See `docs` for trade-offs and future improvements.

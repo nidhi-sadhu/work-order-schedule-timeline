@@ -1,0 +1,17 @@
+<div class="timescale">
+  <span class="timescale-label">Timescale</span>
+  <div class="timescale-select-wrapper">
+    <select
+      [ngModel]="workOrdersTimelineGridFacade.selectedTimescale()"
+      (ngModelChange)="
+        workOrdersTimelineGridFacade.setSelectedTimescale($event)
+      "
+      class="timescale-select"
+    >
+      @for (option of timescaleOptions; track option.value) {
+        <option [value]="option.value">{{ option.label }}</option>
+      }
+    </select>
+    <span class="timescale-arrow"></span>
+  </div>
+</div>

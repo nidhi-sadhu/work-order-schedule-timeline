@@ -1,0 +1,23 @@
+<div
+  class="order-bar-wrapper"
+  [style.left.px]="leftPx()"
+  [style.width.px]="widthPx()"
+  (mouseenter)="hovered = true"
+  (mouseleave)="hovered = false; showMenu = false"
+>
+  <div class="order-bar" [class]="statusClass()" [title]="tooltipText()">
+    <span class="order-name" [title]="workCenterName()">{{
+      workCenterName()
+    }}</span>
+    <span class="status-badge">{{ statusLabel() }}</span>
+    @if (hovered) {
+      <button class="menu-btn" (click)="toggleMenu($event)">•••</button>
+    }
+  </div>
+  @if (showMenu) {
+    <div class="menu-dropdown">
+      <button (click)="onEdit()">Edit</button>
+      <button (click)="onDelete()">Delete</button>
+    </div>
+  }
+</div>
